@@ -1,0 +1,20 @@
+# curl -X POST http://127.0.0.1:3001/metadatas -H 'Content-Type: application/json;' -H 'Accept: application/json;' -d '{"url": "https://visualstudio.microsoft.com"}'
+POST http://127.0.0.1/auth/login
+Accept: application/json
+Content-Type: application/json
+
+{"id": "userid", "password": "password"}
+
+###
+
+PUT http://127.0.0.1/users/userid
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im5vZGV0ZXN0NCIsIm5hbWUiOiLruYTruYTruYQiLCJpcCI6IjE5Mi4xNjguMC4xIiwibG9naW5BdCI6IjIwMjEtMDYtMDdUMDc6MTA6NDAuODg1WiIsImlhdCI6MTYyMzA0OTg0MCwiZXhwIjoxNjIzMDkzMDQwLCJpc3MiOiJzZWNvIn0.9a0-ExOTuVutKNCiY5bjDUWM04w2j_zIydAw4CUaAag
+
+{"name": "test4", "password": "!lgs1233", "accessableIps": ["10.150.45.220"]}
+
+###
+
+GET http://127.0.0.1/users
+Content-Type: application/json

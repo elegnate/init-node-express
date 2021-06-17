@@ -1,0 +1,11 @@
+FROM node
+
+WORKDIR /www/seco/app
+COPY package*.json ./
+COPY ./src/config/*.env ./dist/config/
+RUN npm install -g npm
+RUN npm install --legacy-peer-deps
+
+COPY . ./
+EXPOSE 3000
+CMD npm run start
