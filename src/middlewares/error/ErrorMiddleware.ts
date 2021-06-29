@@ -11,7 +11,7 @@ import { Middleware, ExpressErrorMiddlewareInterface } from 'routing-controllers
 export class ErrorHandler implements ExpressErrorMiddlewareInterface {
     error(error: any, req: Request, res: Response, next: NextFunction): void {
         logger.error(
-            `Middelware Handler - ${req.method} ${req.url}\n${JSON.stringify(req.body)}\n${error}`,
+            `Middelware Handler - ${req.method} ${req.url}\n${error}\n${JSON.stringify(req.body)}`,
         );
         const message = {
             code: error.httpCode || 500,

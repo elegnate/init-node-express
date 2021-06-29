@@ -13,12 +13,13 @@ import {
     ForbiddenError,
     BadRequestError,
     InternalServerError,
+    Req,
 } from 'routing-controllers';
 import { Service } from 'typedi';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { CreateUserDTO, UpdateUserDTO, ResponseUserDTO } from '../dtos/UserDTO';
 import { UserService } from '../services/UserService';
-import { compareAuthToken } from '../middlewares/JWTMiddleware';
+import { compareAuthToken, getAuthTokenBody, ITokenBody } from '../middlewares/JWTMiddleware';
 import { UserModel } from '../models/UserModel';
 
 @JsonController('/users')
@@ -51,10 +52,24 @@ export class UserController {
 
     @HttpCode(200)
     @Get('/:id')
-    public async getUser(@Param('id') id: string): Promise<UserModel> {
+    public async getUser(@Param('id') id: string, @Req() req: Request): Promise<ResponseUserDTO> {
         const user = await this.userService.getUserById(id);
         if (!user) throw new NotFoundError('NOT_FOUND_ID');
-        return user;
+        const responseUser: ResponseUserDTO = new ResponseUserDTO();
+        responseUser.id = user.id;
+        responseUser.name = user.name;
+
+        const tokenBody: ITokenBody = getAuthTokenBody(req);
+        if (tokenBody) {
+            if (tokenBody.id === user.id) {
+                responseUser.createAt = user.createAt;
+                responseUser.accessableIp = user.accessableIp;
+                responseUser.phone = user.phone;
+                responseUser.createAt = user.createAt;
+                responseUser.updateAt = user.updateAt;
+            }
+        }
+        return responseUser;
     }
 
     @HttpCode(200)

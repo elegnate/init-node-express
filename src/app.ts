@@ -8,7 +8,7 @@ import { env } from './config';
 import { createDatabaseConnection } from './database';
 import { logger } from './utils/logger';
 
-const app: express.Application = createExpressServer({
+export const app: express.Application = createExpressServer({
     controllers: [`${__dirname}/controllers/*{.js,.ts}`],
     middlewares: [`${__dirname}/middlewares/**/*{.js,.ts}`],
     routePrefix: env.prefix,
@@ -48,6 +48,7 @@ createDatabaseConnection()
         const httpServer: Server = createServer(app);
         httpServer.listen(env.port, () => {
             if (env.isCluster) process.send('ready');
+            app.emit('started');
             logger.info(`Express running on port : ${env.port}`);
         });
 
