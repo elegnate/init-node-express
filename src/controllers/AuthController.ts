@@ -1,6 +1,5 @@
 import {
     JsonController,
-    Get,
     Post,
     HttpCode,
     Body,
