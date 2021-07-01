@@ -1,6 +1,0 @@
-node_modules
-dist
-curl
-package-lock.json
-.gitignore
-ormconfig.json

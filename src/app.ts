@@ -48,8 +48,9 @@ createDatabaseConnection()
         const httpServer: Server = createServer(app);
         httpServer.listen(env.port, () => {
             if (env.isCluster) process.send('ready');
+            // Mocha running before
             app.emit('started');
-            logger.info(`Express running on port : ${env.port}`);
+            logger.info(`${process.env.NODE_ENV} Express running on port : ${env.port}`);
         });
 
         process.on('SIGINT', function () {

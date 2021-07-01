@@ -10,7 +10,7 @@ export const env = {
     isDevelopment: process.env.NODE_ENV === 'development',
     isProduction: process.env.NODE_ENV === 'production',
 
-    isCluster: process.env.PM2_MODE === 'cluster',
+    isCluster: process.env.PM2 === 'cluster',
 
     /**
      * HTTP Proxy Server port

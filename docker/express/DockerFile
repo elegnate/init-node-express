@@ -1,10 +1,15 @@
 FROM node
 
-WORKDIR /www/seco/app
+WORKDIR /www/app
 COPY package*.json ./
 COPY ./src/config/*.env ./dist/config/
+
+# node module installing
 RUN npm install -g npm
 RUN npm install --legacy-peer-deps
+
+# pm2 Log rotating module
+RUN npx pm2 install pm2-logrotate
 
 COPY . ./
 EXPOSE 3000

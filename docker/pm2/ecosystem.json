@@ -2,15 +2,20 @@
     "apps": [
         {
             "name": "express-app",
-            "script": "../../dist/app.js",
+            "script": "./dist/app.js",
             "instances": 0,
             "exec_mode": "cluster",
             "wait_ready": true,
             "listen_timeout": 60000,
             "kill_timeout": 5000,
             "watch": false,
+            "env_development": {
+                "PM2": "cluster",
+                "NODE_ENV": "development"
+            },
             "env": {
-                "PM2_MODE": "cluster"
+                "PM2": "cluster",
+                "NODE_ENV": "production"
             }
         }
     ]

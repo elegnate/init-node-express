@@ -10,8 +10,7 @@
     "sourceMap": true
   },
   "include": [
-    "./src/**/*"
-  ],
+    "./src/**/*", "src/controllers/UserController.spec.ts"  ],
   "exclude": [
     "node_modules", "test", "logs", "dist"
   ]

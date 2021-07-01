@@ -1,0 +1,10 @@
+node_modules
+dist
+curl
+package-lock.json
+.gitignore
+ormconfig.json
+
+# TDD Files
+src/controllers/*.spec.ts
+src/controllers/*.spec.js

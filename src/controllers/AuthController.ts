@@ -22,12 +22,6 @@ export class UserController {
     constructor(private userService: UserService, private authService: AuthService) {}
 
     @HttpCode(200)
-    @Get('/login')
-    public async loginPage(): Promise<void> {
-        // Login Page
-    }
-
-    @HttpCode(200)
     @Post('/login')
     public async login(@Body() loginUserDTO: LoginUserDTO): Promise<ResponseUserDTO> {
         const user: UserModel = await this.authService.login(loginUserDTO);

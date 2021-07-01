@@ -1,0 +1,11 @@
+FROM nginx:alpine
+
+RUN apk add --no-cache logrotate
+
+COPY ./docker/nginx/*.conf /etc/nginx/
+COPY ./docker/nginx/nginx.sh /nginx.sh
+RUN chmod +x /nginx.sh
+
+EXPOSE 80
+EXPOSE 443
+ENTRYPOINT [ "/nginx.sh" ]
